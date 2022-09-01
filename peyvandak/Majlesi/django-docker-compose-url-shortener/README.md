@@ -48,6 +48,6 @@ Open a bash session in a running container:
 
 * You will be able to reach the Django project at 0.0.0.0:80. This is the Nginx endpoint that interacts with Gunicorn at 0.0.0.0:8000
 
-* To validate that the static files are being served correctly, you can visit 0.0.0.0:80/admin. This endpoint will show you the admin page with the correct style used.
+* To validate that the static files are being served correctly, you can visit 0.0.0.0:90/admin. This endpoint will show you the admin page with the correct style used.
 Gunicorn does not serve static files, so if you visit 0.0.0.0:8000/admin - the admin page will pop up without the default style.
 
