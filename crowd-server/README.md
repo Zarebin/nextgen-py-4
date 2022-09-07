@@ -17,4 +17,6 @@ Set up a Django project
 
 Start a Django app
 `python manage.py startapp <appname>`
+[Second Step: Start A Production-Ready](https://simpleisbetterthancomplex.com/tutorial/2021/06/27/how-to-start-a-production-ready-django-project.html)
+
 
