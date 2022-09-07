@@ -24,7 +24,7 @@ class VisitUrl(models.Model):
     browser_version = models.CharField(max_length=15)
     os = models.CharField(max_length=15)
     os_version = models.CharField(max_length=10)
-    ip_address = models. GenericIPAddressField(blank=True, null=True)
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
 
     class Meta:
         ordering = ["-visit_date"]
@@ -45,7 +45,7 @@ class Shortener(models.Model):
     
     shortner_owner = models.CharField(max_length=20, editable=False, blank=True)
 
-    ip_address = models. GenericIPAddressField(blank=True, null=True)
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
 
     class Meta:
         ordering = ["-created_date"]
@@ -54,9 +54,4 @@ class Shortener(models.Model):
     def __str__(self):
         return f'{self.long_url} to {self.short_url}'
     
-
-    #def save(self, *args, **kwargs):
-    #    if not self.short_url:
-    #        self.short_url = create_shortened_url(self)
-    #    super().save(*args, **kwargs)
            
