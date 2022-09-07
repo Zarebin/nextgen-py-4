@@ -5,6 +5,7 @@ from statistics import mode
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Order(models.Model):
     product_category = models.CharField(max_length=20)
     payment_method = models.CharField(max_length=50)
@@ -12,13 +13,10 @@ class Order(models.Model):
     unit_price = models.DecimalField(max_digits=5, decimal_places=2)
 
 
-
 class VisitUrl(models.Model):
     short_url = models.CharField(max_length=15, blank=True)
-    #ip_address = models. GenericIPAddressField()
     visit_date = models.DateTimeField(auto_now_add=True)
     response_date = models.DateTimeField(auto_now_add=True)
-    #device = models.CharField(max_length=20, blank=True)
     visitor = models.CharField(max_length=20)
 
     device = models.CharField(max_length=15)
@@ -32,8 +30,6 @@ class VisitUrl(models.Model):
         ordering = ["-visit_date"]
 
 
-
-# Create your models here.
 class Shortener(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
@@ -47,7 +43,6 @@ class Shortener(models.Model):
 
     device = models.CharField(max_length=15, blank=True)
     
-    #owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, default=-1)
     shortner_owner = models.CharField(max_length=20, editable=False, blank=True)
 
     ip_address = models. GenericIPAddressField(blank=True, null=True)
