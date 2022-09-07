@@ -10,8 +10,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-
-# Create your views here.
 @api_view(['POST'])
 def create_user(request):
     if request.method == 'POST':
@@ -21,7 +19,6 @@ def create_user(request):
             return JsonResponse({"result": "new account has been created"})
         except:
             return JsonResponse({"result": 'Please enter "username" , "password", "email"'})
-
 
 
 @api_view(['GET'])
@@ -46,7 +43,6 @@ def login_state(request):
             logins = request.user.username + " has logined"
             return JsonResponse({"result": logins}, safe=False)
         else:
-            mm = request.user_agent.os.family
             return JsonResponse({"result": "No One"}, safe=False)
 
 
@@ -80,7 +76,6 @@ def logout_user(request):
     return JsonResponse({"result": "logout successfully"}, safe=False)
 
 
-
 def device(request):
     if request.user_agent.is_mobile:
         return "mobile"
@@ -92,7 +87,6 @@ def device(request):
         return "bot"
     return "postman"
    
-
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -123,7 +117,6 @@ def urlshortener(request):
         return Response({"long_url": shorturl.long_url, "shortUrl":shorturl.short_url}, status=status.HTTP_201_CREATED) 
 
 
-
 @api_view(['GET'])
 def get_urlshortener_registerd(request):
     # Getting all the urls of customer with customer_id
@@ -133,7 +126,6 @@ def get_urlshortener_registerd(request):
             return JsonResponse(urls, safe=False)
         else:
             return JsonResponse({"result":"please login first"})
-
 
 
 def create_visit_url(request, shortened_part, visitor):
