@@ -6,13 +6,10 @@ from .utils import create_shortened_url
 from django.contrib.auth.models import User
 
 
-
 class VisitUrl(models.Model):
     short_url = models.CharField(max_length=15, blank=True)
-    #ip_address = models. GenericIPAddressField()
     visit_date = models.DateTimeField(auto_now_add=True)
     response_date = models.DateTimeField(auto_now_add=True)
-    #device = models.CharField(max_length=20, blank=True)
     visitor = models.CharField(max_length=20)
 
     device = models.CharField(max_length=15)
@@ -26,8 +23,6 @@ class VisitUrl(models.Model):
         ordering = ["-visit_date"]
 
 
-
-# Create your models here.
 class Shortener(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
@@ -41,14 +36,12 @@ class Shortener(models.Model):
 
     device = models.CharField(max_length=15, blank=True)
     
-    #owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, default=-1)
     shortner_owner = models.CharField(max_length=20, editable=False, blank=True)
 
     ip_address = models. GenericIPAddressField(blank=True, null=True)
 
     class Meta:
         ordering = ["-created_date"]
-
 
     def __str__(self):
         return f'{self.long_url} to {self.short_url}'
