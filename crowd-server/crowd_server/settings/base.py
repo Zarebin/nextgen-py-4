@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "crowd_server.apps.user"
+    "rest_framework",
+    "crowd_server.apps.user",
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
