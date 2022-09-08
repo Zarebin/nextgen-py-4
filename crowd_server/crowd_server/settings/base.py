@@ -51,6 +51,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+if DEBUG is False:
+    del MIDDLEWARE[0]
+
 
 # ==============================================================================
 # TEMPLATES SETTINGS
