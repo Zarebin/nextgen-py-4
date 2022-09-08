@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import dj_database_url
+import crowd_server
 from decouple import Csv, config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,6 +51,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+if DEBUG is False:
+    del MIDDLEWARE[0]
+
 
 # ==============================================================================
 # TEMPLATES SETTINGS
@@ -76,12 +80,19 @@ TEMPLATES = [
 # DATABASES SETTINGS
 # ==============================================================================
 
-#DATABASES = {
-#    "default": dj_database_url.config(
-#        default=config("DATABASE_URL", default="postgres://crowd_server:crowd_server@localhost:5432/crowd_server"),
-#        conn_max_age=600,
-#    )
-#}
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default=config("DATABASE_URL", default="postgres://crowd_server:crowd_server@localhost:5432/crowd_server"),
+#         conn_max_age=600,
+#     )
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # ==============================================================================
