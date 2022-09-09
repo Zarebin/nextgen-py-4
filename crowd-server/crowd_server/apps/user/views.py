@@ -7,6 +7,7 @@ from rest_framework import permissions
 from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse
+from .models import Profile
 
 
 class LoginView(APIView):
@@ -38,7 +39,8 @@ class RegisterView(CreateAPIView):
     def post(self, request):
         form = UserCreationForm(request.POST)
         if form.is_valid:
-            form.save()
+            user = form.save()
+            Profile.objects.create(user=user)
             response_data = {'status': 'successful', 'message': 'Registration successful'}
             response = JsonResponse(response_data, status=200)
             return response 

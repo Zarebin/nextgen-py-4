@@ -20,6 +20,10 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
+    def save(self, *args, **kwargs):
+        self.count = self.no_count + self.yes_count
+        super().save(*args, **kwargs)
+
 
 class QuestionUser(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
