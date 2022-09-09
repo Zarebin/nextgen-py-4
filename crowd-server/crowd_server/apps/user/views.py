@@ -8,6 +8,7 @@ from rest_framework import permissions
 from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse
+from .models import Profile
 
 
 class LoginView(APIView):
@@ -37,6 +38,7 @@ class RegisterView(CreateAPIView):
     #TODO serializer
 
     def post(self, request):
+        #form = StatementForm(request.POST)
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
@@ -71,6 +73,4 @@ class StatusView(RetrieveAPIView):
         response_data = {'username': username}
         response = JsonResponse(response_data, status=200)
         return response
-
-
 
