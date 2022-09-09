@@ -3,6 +3,7 @@
 from .base import *
 
 INSTALLED_APPS += ["debug_toolbar"]
+INSTALLED_APPS += ["crowd_server.apps.image_caption"]
 
 MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
