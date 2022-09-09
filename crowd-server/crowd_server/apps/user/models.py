@@ -8,5 +8,5 @@ class Profile(models.Model):
     level = models.IntegerField(default=1)
 
     def __str__(self):
-        return f"score: {self.score} | level: {self.level}"    
-
+        return f"score: {self.score} | level: {self.level}"
+        
