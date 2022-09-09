@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import dj_database_url
 import crowd_server
 from decouple import Csv, config
@@ -30,6 +29,8 @@ INSTALLED_APPS = [
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
 
 ROOT_URLCONF = "crowd_server.urls"
 
@@ -169,3 +170,5 @@ MEDIA_ROOT = BASE_DIR.parent.parent / "media"
 # ==============================================================================
 
 CROWD_SERVER_ENVIRONMENT = config("CROWD_SERVER_ENVIRONMENT", default="local")
+
+

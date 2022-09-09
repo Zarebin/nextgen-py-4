@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
+from crowd_server.apps.user.models import Profile
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView, UpdateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView
 from rest_framework import permissions
@@ -37,8 +38,9 @@ class RegisterView(CreateAPIView):
 
     def post(self, request):
         form = UserCreationForm(request.POST)
-        if form.is_valid:
-            form.save()
+        if form.is_valid():
+            user = form.save()
+            Profile.objects.create(user=user)
             response_data = {'status': 'successful', 'message': 'Registration successful'}
             response = JsonResponse(response_data, status=200)
             return response 
