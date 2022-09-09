@@ -7,7 +7,7 @@ class Question(models.Model):
     image_link = models.URLField(max_length=200, null=True, blank=True)
     no_count = models.PositiveIntegerField(default=0)
     yes_count = models.PositiveIntegerField(default=0)
-    total_count = models.PositiveIntegerField(default=0)
+    count = models.PositiveIntegerField(default=0)
     not_sure_count = models.PositiveIntegerField(default=0)
     
     class FinalAnswer(models.IntegerChoices):
