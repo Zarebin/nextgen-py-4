@@ -18,7 +18,7 @@ class Question(models.Model):
     final_answer = models.IntegerField(choices=FinalAnswer.choices, default=-1)
 
     def __str__(self):
-        return self.question_text
+        return f'{self.id} - {self.question_text}'
 
     def save(self, *args, **kwargs):
         self.count = self.no_count + self.yes_count

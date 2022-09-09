@@ -26,7 +26,6 @@ class PopulateQuestion(CreateAPIView):
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
-
     def enforce_csrf(self, request):
         return
 
@@ -40,7 +39,7 @@ class FoodLabelerView(APIView):
     def get(self, request):
         user = request.user
         answered_questions = [x.question.id for x in QuestionUser.objects.filter(user=user)]
-        questions = Question.objects.exclude(Q(id__in=answered_questions) | Q(count__gt=10)).order_by('-count')
+        questions = Question.objects.exclude(Q(id__in=answered_questions) | Q(count__gte=constants.SCORE_THRESHOLD)).order_by('-count')
         question = questions[0]
 
         response_data = {'image_link': question.image_link, 'question_text': question.question_text, 'question_id': question.id}
@@ -77,7 +76,7 @@ class FoodLabelerView(APIView):
             response_data = {}
             response = JsonResponse(response_data, status=201)
             return response
-                     
+
 
         except:
             response_data = {'status': 'failed', 'message': 'Something went wrong'}
