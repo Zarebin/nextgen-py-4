@@ -10,7 +10,6 @@ from django.http import  HttpRequest
 from . import constants
 import math
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from .serializers import QuestionSerializer
 
 
 NO = constants.NO
@@ -28,8 +27,6 @@ class FoodFact(CreateAPIView):
 
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
-    serializer_class = QuestionSerializer
-    queryset = Question.objects.all()
 
     def post(self, requset: HttpRequest, format = None):
         try:
