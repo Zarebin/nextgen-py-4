@@ -2,7 +2,8 @@
 
 from .base import *
 
-INSTALLED_APPS += ["debug_toolbar"]
+INSTALLED_APPS += ["debug_toolbar", "crowd_server.apps.food_labeler" ,]
+
 
 MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 

@@ -26,8 +26,15 @@ class FoodLabeler(APIView):
     permission_classes = [permissions.IsAuthenticated] 
 
     def get(self, request):
-        pass
+        user = request.user
+        answered_questions = [x.question.id for x in QuestionUser.objects.filter(user=user)]
+        questions = Question.objects.exclude(id__in=answered_questions, count__gt=10).order_by('count')
+        question = questions[0]
 
+        response_data = {'image_link': question.image_link, 'question_text': question.question_text, 'question_id': question.id}
+        response = JsonResponse(response_data, status=200)
+        return response
+        
 
     def post(self, request):
         try:

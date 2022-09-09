@@ -3,7 +3,7 @@ from .models import Question, QuestionUser
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('question_text', 'final_answer')
+    list_display = ('question_text', 'id', 'final_answer')
     list_filter = ('yes_count', 'no_count')
 
 

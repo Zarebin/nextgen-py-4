@@ -27,7 +27,6 @@ INSTALLED_APPS = [
 
     "rest_framework",
     "crowd_server.apps.user",
-    "crowd_server.apps.food_labeler",
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
