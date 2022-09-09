@@ -23,7 +23,7 @@ urlpatterns = [
     path('api/users/', include('crowd_server.apps.user.urls')),
     path('api/food_fact', include('crowd_server.apps.food_fact.urls')),
     path('api/image_caption', include('crowd_server.apps.image_caption.urls')),
-    path('api/food_labeler/', include('crowd_server.apps.food_labeler.urls')),
+    path('api/food_labeler', include('crowd_server.apps.food_labeler.urls')),
 ]
 
 
