@@ -26,7 +26,7 @@ class Question(models.Model):
 
 
 class QuestionUser(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='qu_food_labeler')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     class Answer(models.IntegerChoices):

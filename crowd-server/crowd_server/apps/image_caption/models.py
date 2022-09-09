@@ -30,7 +30,7 @@ class Question(models.Model):
 
 
 class Question_User(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='qu_image_caption')
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.IntegerField()
 
