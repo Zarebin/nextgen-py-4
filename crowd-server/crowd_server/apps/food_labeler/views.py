@@ -10,19 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from rest_framework.authentication import SessionAuthentication, BaseAuthentication
-
-class PopulateQuestion(CreateAPIView):
-
-    def get(self, request):
-        question_template = 'Is {food} the dish shown in the image?'
-
-        with open('/home/milad/workspace/django/projects/nextgen-py-4/crowd-server/food.txt', 'r') as f:
-            for food in f:
-                question_text = question_template.format(food=food)
-                question = Question(question_text=question_text)
-                question.save()
-
-        return JsonResponse({'detail': 'Successfuly populated database'})
+from .serializers import QuestionSerializer, QuestionUserSerializer 
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
@@ -35,6 +23,8 @@ class FoodLabelerView(APIView):
     
     permission_classes = [permissions.IsAuthenticated] 
     authentication_classes = (CsrfExemptSessionAuthentication, BaseAuthentication)
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
 
     def get(self, request):
         user = request.user
