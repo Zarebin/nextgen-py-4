@@ -52,8 +52,8 @@ class ImageCaption(APIView):
     def get(self, request):
         if request.user.is_authenticated:
             user = request.user
-            answered_questions = [question.id for question in Question_User.objects.filter(user=user)]
-            question = Question.objects.exclude(Q(id__in = answered_questions) | Q(count__gt=10)).order_by('-count')[0]
+            answered_questions = [question.question.id for question in Question_User.objects.filter(user=user)]
+            question = Question.objects.exclude(Q(id__in = answered_questions) | Q(count__gt=constatnts.THRESHOLD)).order_by('-count')[0]
             response = {
                 "image_link": question.image_link,
                 "question_text": question.question_text,

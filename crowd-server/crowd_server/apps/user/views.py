@@ -39,7 +39,7 @@ class RegisterView(CreateAPIView):
     def post(self, request):
         #form = StatementForm(request.POST)
         form = UserCreationForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             user = form.save()
             Profile.objects.create(user=user)
             response_data = {'status': 'successful', 'message': 'Registration successful'}
