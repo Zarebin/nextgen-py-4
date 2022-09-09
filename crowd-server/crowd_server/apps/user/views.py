@@ -73,5 +73,3 @@ class StatusView(RetrieveAPIView):
         response = JsonResponse(response_data, status=200)
         return response
 
-
-
