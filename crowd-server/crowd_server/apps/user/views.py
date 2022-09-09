@@ -37,6 +37,7 @@ class RegisterView(CreateAPIView):
     #TODO serializer
 
     def post(self, request):
+        #form = StatementForm(request.POST)
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
