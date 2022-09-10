@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
-    image_link = models.URLField(max_length=200, null=True, blank=True)
+    cert_text1 = models.CharField(max_length=200)
+    cert_text2 = models.CharField(max_length=200)
     no_count = models.PositiveIntegerField(default=0)
     yes_count = models.PositiveIntegerField(default=0)
     count = models.PositiveIntegerField(default=0)
@@ -26,8 +27,8 @@ class Question(models.Model):
 
 
 class QuestionUser(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='qu_food_labeler')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='qu_food_labeler')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='qu_translation_validator')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='qu_translation_validator')
     
     class Answer(models.IntegerChoices):
         NO = 0
