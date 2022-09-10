@@ -28,7 +28,7 @@ class Question(models.Model):
 
 class QuestionUser(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='qu_translation_validator')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='qu_translation_validator')
     
     class Answer(models.IntegerChoices):
         NO = 0

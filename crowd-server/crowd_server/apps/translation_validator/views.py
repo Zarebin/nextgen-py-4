@@ -30,7 +30,9 @@ class TranslationValidatorView(APIView):
         questions = Question.objects.exclude(Q(id__in=answered_questions) | Q(count__gte=constants.SCORE_THRESHOLD)).order_by('-count')
         question = questions[0]
 
-        response_data = {'cert_text1': question.cert_text1, 'cert_text2': question.cert_text2, 'question_id': question.id}
+        response_data = {'question_text': question.question_text, 'cert_text1': question.cert_text1,
+                         'cert_text2': question.cert_text2, 'question_id': question.id}
+
         response = JsonResponse(response_data, status=200)
         return response
         
