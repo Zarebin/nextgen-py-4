@@ -14,9 +14,3 @@ def update_user_score(question):
             question_user.user.profile.save()
             question_user.user.save()
 
-
-def get_question(request):
-    user = request.user
-    answered_questions = [question.id for question in QuestionUser.objects.filter(user=user)]
-    question = list(question.exclude(Q(id__in = answered_questions) | Q(count__gt=10)).order_by('-count')[0].values())
-    return question

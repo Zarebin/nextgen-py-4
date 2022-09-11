@@ -28,12 +28,7 @@ class Question(models.Model):
         counts_list = [self.photo1_count, self.photo2_count, self.similar_count]
         if self.count>=constants.THRESHOLD and counts_list.count(max(counts_list))==1:
             max_count = max(counts_list)
-            if self.photo1_count == max_count:
-                self.final_answer = 0 
-            elif self.photo2_count == max_count:
-                self.final_answer = 1
-            else:
-                self.final_answer = 2
+            self.final_answer = counts_list.index(max_count)
         super(Question, self).save(*args, **kwargs)
 
 
