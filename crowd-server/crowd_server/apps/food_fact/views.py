@@ -32,9 +32,9 @@ class FoodFact(CreateAPIView):
 
     def post(self, requset: HttpRequest, format = None):
         try:
-            id = int(requset.POST.get('question_id'))
+            question_id = int(requset.POST.get('question_id'))
             answer = int(requset.POST.get('label'))
-            question = Question.objects.get(id = id)
+            question = Question.objects.get(id = question_id)
             user = requset.user
             QuestionUser.objects.create(question = question, answer = answer, user = user)
 
@@ -79,8 +79,8 @@ class FoodFact(CreateAPIView):
 
         image_link = question.image_link
         question_text = question.question_text   
-        id = question.id
+        question_id = question.id
 
-        response_data = {"image_link": image_link, "question_text": question_text, "id": id}
+        response_data = {"image_link": image_link, "question_text": question_text, "question_id": question_id}
         response = JsonResponse(response_data)
         return response     

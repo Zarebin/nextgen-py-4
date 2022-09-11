@@ -15,7 +15,7 @@ from .serializers import SentimentSerializer
 
 NO = constants.NO
 YES = constants.YES
-NOT_SURE = constants.NOT_SURE
+NEUTRAL = constants.NEUTRAL
 SCORE_THRESHOLD = constants.SCORE_THRESHOLD
 
 
@@ -32,9 +32,9 @@ class Sentiment(CreateAPIView):
 
     def post(self, requset: HttpRequest, format = None):
         try:
-            id = int(requset.POST.get('question_id'))
+            question_id = int(requset.POST.get('question_id'))
             answer = int(requset.POST.get('label'))
-            question = Question.objects.get(id = id)
+            question = Question.objects.get(id = question_id)
             user = requset.user
             QuestionUser.objects.create(question = question, answer = answer, user = user)
 
@@ -44,12 +44,14 @@ class Sentiment(CreateAPIView):
             elif answer == NO:
                 question.no_count += 1
                 question.count += 1
-            elif answer == NOT_SURE:
-                question.not_sure_count += 1
+            elif answer == NEUTRAL:
+                question.neutral_count += 1
+                question.count += 1
             
             question.save()
-            if question.count >= SCORE_THRESHOLD:
-                question.final_answer = YES if question.yes_count > question.no_count else NO
+            counts_list = [question.no_count, question.yes_count, question.neutral_count]
+            if question.count >= SCORE_THRESHOLD and counts_list.count(max(counts_list)) == 1:
+                question.final_answer = counts_list.index(max(counts_list))
                 question.save()
 
                 rewarded_users = QuestionUser.objects.filter(question = question, answer = question.final_answer)
@@ -74,13 +76,13 @@ class Sentiment(CreateAPIView):
     def get(self, request: HttpRequest):
         user = request.user
         answered_questions = [qs.question.id for qs in QuestionUser.objects.filter(user=user)]
-        questions = Question.objects.exclude(Q(id__in=answered_questions) | Q(count__gte=SCORE_THRESHOLD)).order_by('-count')
+        questions = Question.objects.exclude(Q(id__in=answered_questions) | ~Q(final_answer=-1)).order_by('-count')
         question = questions[0]
 
         cert_text = question.cert_text
         question_text = question.question_text   
-        id = question.id
+        question_id = question.id
 
-        response_data = {"cert_text": cert_text, "question_text": question_text, "id": id}
+        response_data = {"cert_text": cert_text, "question_text": question_text, "question_id": question_id}
         response = JsonResponse(response_data)
         return response     

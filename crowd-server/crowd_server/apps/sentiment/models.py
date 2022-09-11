@@ -5,7 +5,7 @@ from . import constants
 
 NO = constants.NO
 YES = constants.YES
-NOT_SURE = constants.NOT_SURE
+NEUTRAL = constants.NEUTRAL
 
 
 class Question(models.Model):
@@ -13,7 +13,7 @@ class Question(models.Model):
     question_text = models.CharField(max_length=100000)
     no_count = models.IntegerField(default=0)
     yes_count = models.IntegerField(default=0)
-    not_sure_count = models.IntegerField(default=0)
+    neutral_count = models.IntegerField(default=0)
     count = models.IntegerField(default=0)
     
     class FinalAnswer(models.IntegerChoices):

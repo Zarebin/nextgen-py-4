@@ -3,7 +3,7 @@ from .models import Question
 from .models import QuestionUser
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ['id','cert_text', 'question_text', 'no_count', 'yes_count', 'not_sure_count', 'count', 'final_answer']
+    list_display = ['id','cert_text', 'question_text', 'no_count', 'yes_count', 'neutral_count', 'count', 'final_answer']
 
 class QuestionUserAdmin(admin.ModelAdmin):
     list_display = ['id','user', 'question', 'answer']
