@@ -2,6 +2,7 @@ from pathlib import Path
 import dj_database_url
 import crowd_server
 from decouple import Csv, config
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,6 +16,9 @@ SECRET_KEY = config("SECRET_KEY", default="django-insecure$crowd_server.settings
 DEBUG = config("DEBUG", default=True, cast=bool)
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1,localhost", cast=Csv())
+
+#DEBUG = int(os.environ.get("DEBUG", default=0))
+#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
