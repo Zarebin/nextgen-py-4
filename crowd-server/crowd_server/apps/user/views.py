@@ -9,12 +9,13 @@ from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse
 from .models import Profile
+from .serializers import LoginSerializer, RegisterSerializer
 
 
-class LoginView(APIView):
+class LoginView(CreateAPIView):
     
     queryset = User.objects.all()
-    #TODO serializer (swagger)
+    serializer_class = LoginSerializer
 
     def post(self, request):
         form = AuthenticationForm(request, data=request.POST)
@@ -35,7 +36,7 @@ class LoginView(APIView):
 
 class RegisterView(CreateAPIView):
     queryset = User.objects.all()
-    #TODO serializer
+    serializer_class = RegisterSerializer
 
     def post(self, request):
         #form = StatementForm(request.POST)
@@ -54,7 +55,6 @@ class RegisterView(CreateAPIView):
 
 class LogoutView(APIView):
     queryset = User.objects.all()
-    #TODO serializer
 
     def get(self, request): 
         logout(request)
@@ -65,7 +65,6 @@ class LogoutView(APIView):
 
 class StatusView(RetrieveAPIView):
     queryset = User.objects.all()
-    #TODO serializer
 
     def get(self, request):
         # just for test

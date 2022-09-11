@@ -10,6 +10,7 @@ from django.http import  HttpRequest
 from . import constants
 import math
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from .serializers import SentimentSerializer
 
 
 NO = constants.NO
@@ -27,6 +28,7 @@ class Sentiment(CreateAPIView):
 
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+    serializer_class = SentimentSerializer
 
     def post(self, requset: HttpRequest, format = None):
         try:

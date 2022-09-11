@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from rest_framework.authentication import SessionAuthentication, BaseAuthentication
+from .serializers import FoodLabelerSerializer 
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
@@ -18,11 +19,12 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class FoodLabelerView(APIView):
+class FoodLabelerView(CreateAPIView):
     
     permission_classes = [permissions.IsAuthenticated] 
     authentication_classes = (CsrfExemptSessionAuthentication, BaseAuthentication)
     queryset = Question.objects.all()
+    serializer_class = FoodLabelerSerializer
 
     def get(self, request):
         user = request.user

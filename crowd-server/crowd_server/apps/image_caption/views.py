@@ -2,6 +2,7 @@ from telnetlib import STATUS
 from urllib import response
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.generics import CreateAPIView
 from .models import Question_User, Question
 from django.contrib.auth.models import User
 from rest_framework import permissions
@@ -12,6 +13,7 @@ from . import constatnts
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication 
 from django.http import JsonResponse
 from django.db.models import Q
+from .serializers import ImageCaptionSerializer
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
@@ -20,9 +22,10 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
         return  # To not perform the csrf check previously happening
 
 
-class ImageCaption(APIView):
+class ImageCaption(CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+    serializer_class = ImageCaptionSerializer
 
     def post(self, request, format=None):
         try:
