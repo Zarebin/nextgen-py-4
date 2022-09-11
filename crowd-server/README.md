@@ -21,7 +21,7 @@ This is a brief documentation for Crowd Server API.The API is organized around [
     see [Google Crowd Source](https://crowdsource.google.com/) for more examples  
 - **Translation Validator**             
     This app asks if the given translation of a sentence/phrase/word is true            
-    see [Google Crowd Source](https://crowdsource.google.com/) 
+    see [Google Crowd Source](https://crowdsource.google.com/) for more examples
 
 ---             
 ## Access the API                        
