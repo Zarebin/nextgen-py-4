@@ -1,5 +1,4 @@
 
-
 from pathlib import Path
 import dj_database_url
 import crowd_server
@@ -29,6 +28,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_swagger",
     "crowd_server.apps.user",
+    "crowd_server.apps.core",
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
