@@ -8,6 +8,7 @@ INSTALLED_APPS += ["debug_toolbar",
                    "crowd_server.apps.food_fact",
                    "crowd_server.apps.sentiment",
                    "crowd_server.apps.translation_validator",
+                   "crowd_server.apps.food_compare"
                    ]
                    
 MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")

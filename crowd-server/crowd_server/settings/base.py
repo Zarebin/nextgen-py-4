@@ -1,3 +1,5 @@
+
+
 from pathlib import Path
 import dj_database_url
 import crowd_server
@@ -170,5 +172,3 @@ MEDIA_ROOT = BASE_DIR.parent.parent / "media"
 # ==============================================================================
 
 CROWD_SERVER_ENVIRONMENT = config("CROWD_SERVER_ENVIRONMENT", default="local")
-
-
