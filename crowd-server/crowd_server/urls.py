@@ -26,7 +26,7 @@ urlpatterns = [
     path('api/food_labeler', include('crowd_server.apps.food_labeler.urls')),
     path('api/sentiment', include('crowd_server.apps.sentiment.urls')),
     path('api/translation_validator', include('crowd_server.apps.translation_validator.urls')),
-
+    path('api/food_compare', include('crowd_server.apps.food_compare.urls'))
 ]
 
 
