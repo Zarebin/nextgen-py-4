@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
+    "rest_framework_swagger",
     "crowd_server.apps.user",
 ]
 
@@ -73,6 +74,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+
+            'libraries' : {'staticfiles': 'django.templatetags.static'}
         },
     },
 ]
@@ -163,6 +166,13 @@ MEDIA_ROOT = BASE_DIR.parent.parent / "media"
 # ==============================================================================
 # THIRD-PARTY SETTINGS
 # ==============================================================================
+REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+                   'DEFAULT_PARSER_CLASSES': [
+                       'rest_framework.parsers.FormParser',
+                       'rest_framework.parsers.MultiPartParser',
+                       'rest_framework.parsers.JSONParser',
+                    ]
+}
 
 
 # ==============================================================================

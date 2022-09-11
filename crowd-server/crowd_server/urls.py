@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls import include
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Crowd Source API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/docs/', schema_view),
     path('api/users/', include('crowd_server.apps.user.urls')),
     path('api/food_fact', include('crowd_server.apps.food_fact.urls')),
     path('api/image_caption', include('crowd_server.apps.image_caption.urls')),
