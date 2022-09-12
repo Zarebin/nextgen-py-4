@@ -67,8 +67,12 @@ class StatusView(RetrieveAPIView):
     queryset = User.objects.all()
 
     def get(self, request):
-        user = request.user
-        response_data = {'username': user.username, 'level': user.profile.level, 'score': user.profile.score}
-        response = JsonResponse(response_data, status=200)
-        return response
-
+        try:
+            user = request.user
+            response_data = {'username': user.username, 'level': user.profile.level, 'score': user.profile.score}
+            response = JsonResponse(response_data, status=200)
+            return response
+        except:
+            response_data = {'username': "Anonymous user"}
+            response = JsonResponse(response_data, status=200)
+            return response

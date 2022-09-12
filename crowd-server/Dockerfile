@@ -11,5 +11,5 @@ RUN pip install --upgrade pip
 
 RUN pip install -r ./requirements/local.txt
 
-COPY ./entrypoint.sh /
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+
+ENTRYPOINT ["sh", "./entrypoint.sh"]
