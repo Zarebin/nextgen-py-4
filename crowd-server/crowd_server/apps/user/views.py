@@ -7,7 +7,7 @@ from rest_framework.generics import CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework import permissions
 from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from .models import Profile
 from .serializers import LoginSerializer, RegisterSerializer
 
@@ -65,13 +65,13 @@ class LogoutView(APIView):
 class StatusView(RetrieveAPIView):
     queryset = User.objects.all()
 
-    def get(self, request):
+    def get(self, request: HttpRequest):
         try:
             user = request.user
-            response_data = {'username': user.username, 'level': user.profile.level, 'score': user.profile.score}
+            response_data = {'username': user.username, 'level': user.profile.level, 'score': user.profile.score, "cookie": request.COOKIES}
             response = JsonResponse(response_data, status=200)
             return response
         except:
-            response_data = {'username': "Anonymous user"}
+            response_data = {'username': "Anonymous user", "cookie": request.COOKIES}
             response = JsonResponse(response_data, status=200)
             return response

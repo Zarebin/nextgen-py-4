@@ -21,3 +21,4 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # It's just for developing
 CORS_ORIGIN_ALLOW_ALL = True
+CSRF_COOKIE_SECURE = True
