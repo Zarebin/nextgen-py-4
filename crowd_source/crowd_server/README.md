@@ -32,8 +32,8 @@ Access the Dockerhub repository from here:
 - [Dockerhub repository](https://hub.docker.com/r/tahoora/crowd-server-api)     
      
 You can easily work with the API with the following commands:
-- `docker pull tahoora/crowd-server-api:version1`
-- `docker run -p 8000:8000 tahoora/crowd-server-api:version1`
+- `docker pull tahoora/crowd-server-api:version2`
+- `docker run -p 8000:8000 tahoora/crowd-server-api:version2`
 
 ### Github
 Access the Github repository from here:(Until further notice, **use the version1 branch** of this repository)
