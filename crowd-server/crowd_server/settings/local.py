@@ -18,3 +18,6 @@ MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 # ==============================================================================
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# It's just for developing
+CORS_ORIGIN_ALLOW_ALL = True
