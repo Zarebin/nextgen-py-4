@@ -13,5 +13,5 @@ python manage.py populate_db translation_validator
 
 DJANGO_SUPERUSER_PASSWORD=$SUPER_USER_PASSWORD python manage.py createsuperuser --username $SUPER_USER_NAME --email $SUPER_USER_EMAIL --noinput
 
-gunicorn crowd_server.wsgi:application --bind 0.0.0.0:8001
+gunicorn crowd_server.wsgi:application --bind 0.0.0.0:8000
 
