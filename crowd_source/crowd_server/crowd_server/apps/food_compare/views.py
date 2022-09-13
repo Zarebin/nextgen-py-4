@@ -16,12 +16,6 @@ from django.db.models import Q
 from .serializers import FoodCompareSerializer
 
 
-class CsrfExemptSessionAuthentication(SessionAuthentication):
-
-    def enforce_csrf(self, request):
-        return  # To not perform the csrf check previously happening
-
-
 class FoodCompare(CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodCompareSerializer 

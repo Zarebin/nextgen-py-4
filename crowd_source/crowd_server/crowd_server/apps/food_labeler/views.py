@@ -13,11 +13,6 @@ from rest_framework.authentication import SessionAuthentication, BaseAuthenticat
 from .serializers import FoodLabelerSerializer 
 
 
-class CsrfExemptSessionAuthentication(SessionAuthentication):
-    def enforce_csrf(self, request):
-        return
-
-
 @method_decorator(csrf_exempt, name='dispatch')
 class FoodLabelerView(CreateAPIView):
     

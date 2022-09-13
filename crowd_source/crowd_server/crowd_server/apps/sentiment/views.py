@@ -19,11 +19,6 @@ NEUTRAL = constants.NEUTRAL
 SCORE_THRESHOLD = constants.SCORE_THRESHOLD
 
 
-class CsrfExemptSessionAuthentication(SessionAuthentication):
-    def enforce_csrf(self, request):
-        return 
-
-
 class Sentiment(CreateAPIView):
 
     permission_classes = [permissions.IsAuthenticated]

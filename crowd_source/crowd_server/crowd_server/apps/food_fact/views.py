@@ -19,10 +19,6 @@ NOT_SURE = constants.NOT_SURE
 SCORE_THRESHOLD = constants.SCORE_THRESHOLD
 
 
-class CsrfExemptSessionAuthentication(SessionAuthentication):
-    def enforce_csrf(self, request):
-        return 
-
 
 class FoodFact(CreateAPIView):
 

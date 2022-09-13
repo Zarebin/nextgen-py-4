@@ -1,7 +1,6 @@
 from xml.etree.ElementInclude import include
 from django.urls import path, include
 from .views import UserAPIView, RegisterAPIView, LoginAPIView
-from knox import views as knox_views
 from knox.views import LogoutView
 
 
@@ -11,7 +10,6 @@ urlpatterns = [
     path('login', LoginAPIView.as_view(), name='login'),
     path('register', RegisterAPIView.as_view(), name='register'),
     path('logout', LogoutView.as_view(), name='knox_logout'),
-    #path('status', user_views.StatusView.as_view(), name='status'),
     ]
 
 

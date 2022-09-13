@@ -16,15 +16,8 @@ from django.db.models import Q
 from .serializers import ImageCaptionSerializer
 
 
-class CsrfExemptSessionAuthentication(SessionAuthentication):
-
-    def enforce_csrf(self, request):
-        return  # To not perform the csrf check previously happening
-
-
 class ImageCaption(CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     serializer_class = ImageCaptionSerializer
 
     def post(self, request, format=None):
