@@ -24,7 +24,6 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 
 class FoodCompare(CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     serializer_class = FoodCompareSerializer 
 
     def post(self, request, format=None):

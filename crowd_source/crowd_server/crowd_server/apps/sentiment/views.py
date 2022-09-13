@@ -27,7 +27,6 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 class Sentiment(CreateAPIView):
 
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     serializer_class = SentimentSerializer
 
     def post(self, requset: HttpRequest, format = None):

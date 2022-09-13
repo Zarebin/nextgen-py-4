@@ -22,7 +22,6 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 class FoodLabelerView(CreateAPIView):
     
     permission_classes = [permissions.IsAuthenticated] 
-    authentication_classes = (CsrfExemptSessionAuthentication, BaseAuthentication)
     queryset = Question.objects.all()
     serializer_class = FoodLabelerSerializer
 

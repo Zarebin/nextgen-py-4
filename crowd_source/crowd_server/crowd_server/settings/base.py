@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    "knox",
     "corsheaders",
     "rest_framework",
     "rest_framework_swagger",
@@ -178,7 +179,8 @@ REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoS
                        'rest_framework.parsers.FormParser',
                        'rest_framework.parsers.MultiPartParser',
                        'rest_framework.parsers.JSONParser',
-                    ]
+                    ],
+                    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
 
 
