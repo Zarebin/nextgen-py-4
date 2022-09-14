@@ -5,6 +5,7 @@ class TranslationValidatorSerializer(serializers.ModelSerializer):
 
     question_id = serializers.IntegerField()
     label = serializers.IntegerField()
+    token = serializers.CharField()
 
     class Meta:
         model = Question

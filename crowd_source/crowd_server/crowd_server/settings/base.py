@@ -2,6 +2,7 @@
 from pathlib import Path
 import dj_database_url
 import crowd_server
+import os
 from decouple import Csv, config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +53,7 @@ WSGI_APPLICATION = "crowd_server.wsgi.application"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -61,6 +63,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
+
 
 if DEBUG is False:
     del MIDDLEWARE[0]
@@ -151,9 +154,11 @@ LOCALE_PATHS = [BASE_DIR / "locale"]
 
 STATIC_URL = "/static/"
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = BASE_DIR.parent.parent / "static"
 
-#STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
